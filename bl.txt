@@ -1,0 +1,76 @@
+int izqA = 5; 
+int izqB = 6; 
+int derA = 9; 
+int derB = 10; 
+int vel = 255; // engine speed (0-255)
+int state = 'g'; // start arrested
+void setup() { 
+Serial.begin(9600); // start the serial port for communication with Bluetooth
+pinMode(derA, OUTPUT);
+pinMode(derB, OUTPUT);
+pinMode(izqA, OUTPUT);
+pinMode(izqB, OUTPUT);
+} 
+
+void loop() { 
+
+if(Serial.available()>0){ // readint izqA = 5; 
+int izqB = 6; 
+int derA = 9; 
+int derB = 10; 
+int vel = 255; // engine speed (0-255)
+int state = 'g'; // start arrested
+void setup() { 
+Serial.begin(9600); // start the serial port for communication with Bluetooth
+pinMode(derA, OUTPUT);
+pinMode(derB, OUTPUT);
+pinMode(izqA, OUTPUT);
+pinMode(izqB, OUTPUT);
+} 
+
+void loop() { 
+
+if(Serial.available()>0){ // reads bluetooth and stores in state
+state = Serial.read();
+}
+if(state=='a'){ // Forward
+  Serial.println(state);
+analogWrite(derB, 0); 
+analogWrite(izqB, 0); 
+analogWrite(derA, vel); 
+analogWrite(izqA, vel); 
+}
+if(state=='d'){ // right
+    Serial.println(state);
+analogWrite(derB, vel); 
+analogWrite(izqB, 0); 
+analogWrite(derA, 0); 
+analogWrite(izqA, vel); 
+}
+if(state=='c'){ // Stop
+    Serial.println(state);
+analogWrite(derB, 0); 
+analogWrite(izqB, 0); 
+analogWrite(derA, 0); 
+analogWrite(izqA, 0); 
+}
+if(state=='b'){ // left
+    Serial.println(state);
+analogWrite(derB, 0); 
+analogWrite(izqB, vel);
+analogWrite(izqA, 0);
+analogWrite(derA, vel); 
+} 
+
+if(state=='e'){ // Reverse
+    Serial.println(state);
+analogWrite(derA, 0); 
+analogWrite(izqA, 0);
+analogWrite(derB, vel); 
+analogWrite(izqB, vel); 
+}
+if (state =='f'){ // ON button moves sensing distance
+}
+if (state =='g'){ //OFF button, stops the engines does nothing
+}
+}
